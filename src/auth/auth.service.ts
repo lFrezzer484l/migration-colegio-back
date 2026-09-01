@@ -44,6 +44,7 @@ export class AuthService {
         };
         
         request.session.userId = user?.id
+        request.session.loginAt = Date.now();
 
         return {
             user: {
