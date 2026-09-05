@@ -12,14 +12,16 @@ export class Role {
   id!: string;
 
   @Column({
+    type: 'varchar',
     unique: true,
     length: 50,
   })
   name!: string;
 
   @Column({
-    nullable: true,
+    type: 'varchar',
     length: 255,
+    nullable: true,
   })
   description!: string | null;
 

@@ -19,35 +19,41 @@ export class User {
   id!: string;
 
   @Column({
+    type: 'varchar',
     unique: true,
     length: 50,
   })
   username!: string;
 
   @Column({
+    type: 'varchar',
     unique: true,
     length: 255,
   })
   email!: string;
 
   @Column({
+    type: 'varchar',
     length: 255,
   })
   password!: string;
 
   @Column({
+    type: 'varchar',
     name: 'first_name',
     length: 100,
   })
   firstName!: string;
 
   @Column({
+    type: 'varchar',
     name: 'last_name',
     length: 100,
   })
   lastName!: string;
 
   @Column({
+    type: 'integer',
     nullable: true,
   })
   grade!: number | null;
