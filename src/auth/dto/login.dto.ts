@@ -4,7 +4,7 @@ export class LoginDto {
 
     @IsEmail()
     @IsNotEmpty()
-    institutionalEmail!: string;
+    email!: string;
 
     @IsString()
     @IsNotEmpty()

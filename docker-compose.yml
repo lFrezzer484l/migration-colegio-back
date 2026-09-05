@@ -3,17 +3,17 @@ services:
   postgres:
     image: postgres:17
 
-    container_name: postgres_db
+    container_name: casos_DB_tickets
 
     restart: unless-stopped
 
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres123
-      POSTGRES_DB: colegio_db
+      POSTGRES_DB: casos_DB_tickets
 
     ports:
-      - "5432:5432"
+      - "5434:5432"
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
