@@ -18,7 +18,8 @@ export class AuthService {
   ) {}
 
   async login(loginDto: LoginDto, request: Request) {
-    const { email, password } = loginDto;
+    const email = loginDto.email.toLowerCase().trim();
+    const { password } = loginDto;
 
     const user = await this.userRepository.findOne({
       where: {
@@ -53,7 +54,7 @@ export class AuthService {
       user: {
         id: user.id,
         email: user.email,
-        role: user.role,
+        role: user.role.name,
         firstName: user.firstName,
         lastName: user.lastName,
       },
@@ -87,7 +88,7 @@ export class AuthService {
     return {
       id: user.id,
       email: user.email,
-      role: user.role,
+      role: user.role.name,
       firstName: user.firstName,
       lastName: user.lastName,
     };

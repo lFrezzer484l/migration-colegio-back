@@ -7,6 +7,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  ManyToMany,
 } from 'typeorm';
 
 import { Role } from '../../rol/entities/role.entity';
@@ -70,7 +71,7 @@ export class User {
   @OneToMany(() => Ticket, (ticket) => ticket.user)
   tickets!: Ticket[];
 
-  @OneToMany(() => Ticket, (ticket) => ticket.assignedAdmin)
+  @ManyToMany(() => Ticket, (ticket) => ticket.assignedAdmins)
   assignedTickets!: Ticket[];
 
   @OneToMany(() => Message, (message) => message.sender)

@@ -7,6 +7,8 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  ManyToMany,
+  JoinTable
 } from 'typeorm';
 import { User } from '../../user/entities/user.entity';
 import { Message } from '../../message/entities/message.entity';
@@ -53,15 +55,20 @@ export class Ticket {
     name: 'user_id',
   })
   user!: User;
-
-  @ManyToOne(() => User, (user) => user.assignedTickets, {
-    nullable: true,
-    onDelete: 'SET NULL',
+  
+  @ManyToMany(() => User, (user) => user.assignedTickets)
+  @JoinTable({
+    name: 'ticket_admins',
+    joinColumn: {
+      name: 'ticket_id',
+      referencedColumnName: 'id',
+    },
+    inverseJoinColumn: {
+      name: 'admin_id',
+      referencedColumnName: 'id',
+    },
   })
-  @JoinColumn({
-    name: 'assigned_admin_id',
-  })
-  assignedAdmin!: User | null;
+assignedAdmins!: User[];
 
   @OneToMany(() => Message, (message) => message.ticket)
   messages!: Message[];

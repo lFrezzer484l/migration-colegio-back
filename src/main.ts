@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import session from 'express-session';
 import connectPgSimple from 'connect-pg-simple';
 import { Pool } from 'pg';
+import 'dotenv/config';
 
 async function bootstrap() {
 
@@ -35,6 +36,8 @@ async function bootstrap() {
       cookie: {
         maxAge: 1000 * 60 * 30,
         httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
       },
     }),
   );
